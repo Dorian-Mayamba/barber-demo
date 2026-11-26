@@ -1,0 +1,136 @@
+:root{
+  --bg:#121212; --panel:#1c1c1c; --line:#2c2c2c;
+  --text:#f2efe9; --muted:#a8a29a; --gold:#c9a227;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.demo-bar{background:var(--gold);color:#111;text-align:center;font:600 13px/1.4 system-ui,sans-serif;padding:8px 12px}
+
+/* Header */
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(18,18,18,.95);z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:960px;margin:0 auto}
+.logo{font-size:1.2rem;letter-spacing:.12em;text-transform:uppercase}
+.logo span{color:var(--gold)}
+nav a{font:500 14px system-ui,sans-serif;margin-left:18px;color:var(--muted)}
+nav a:hover{color:var(--text)}
+
+/* Burger button (hidden on desktop) */
+.burger{
+  display:none;background:none;border:0;cursor:pointer;
+  width:44px;height:44px;padding:10px;
+  flex-direction:column;justify-content:center;gap:5px;
+}
+.burger span{display:block;height:2px;width:100%;background:var(--text);border-radius:2px;transition:transform .25s,opacity .2s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-call{display:none}
+
+/* Sticky call button (mobile only) */
+.sticky-call{
+  display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:20;
+  background:var(--gold);color:#111;text-align:center;
+  font:700 16px system-ui,sans-serif;padding:16px;border-radius:8px;
+  box-shadow:0 6px 20px rgba(0,0,0,.5);
+}
+
+/* Mobile layout */
+@media(max-width:759px){
+  .burger{display:flex}
+  header{position:sticky}
+  nav{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    background:#161616;border-bottom:1px solid var(--line);
+    padding:8px 20px 20px;flex-direction:column;
+  }
+  nav.open{display:flex}
+  nav a{margin:0;padding:16px 0;font-size:17px;border-bottom:1px solid var(--line);color:var(--text)}
+  nav a.menu-call{
+    display:block;margin-top:16px;border:0;border-radius:6px;text-align:center;
+    background:var(--gold);color:#111;font-weight:700;
+  }
+  .sticky-call{display:block}
+  body{padding-bottom:84px}
+}
+
+/* Buttons */
+.btn{display:inline-block;background:var(--gold);color:#111;font:700 15px system-ui,sans-serif;padding:14px 28px;border-radius:4px;letter-spacing:.03em}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--gold)}
+
+/* Hero: add images/hero.jpg for a photo background; falls back to the gradient if missing */
+.hero{
+  padding:110px 0 100px;text-align:center;
+  background:
+    linear-gradient(180deg,rgba(18,18,18,.78),rgba(18,18,18,.92)),
+    url("images/hero.jpg") center/cover no-repeat,
+    linear-gradient(180deg,#1a1a1a,var(--bg));
+}
+.hero small{font:600 12px system-ui,sans-serif;letter-spacing:.25em;color:var(--gold);text-transform:uppercase}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1.1;margin:16px 0}
+.hero p{color:var(--text);opacity:.85;max-width:520px;margin:0 auto 30px;font-size:1.1rem}
+.hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* Sections */
+section{padding:64px 0}
+section.alt{background:#161616}
+h2{font-size:1.9rem;margin-bottom:8px}
+.lead{color:var(--muted);margin-bottom:32px}
+.rule{width:48px;height:2px;background:var(--gold);margin:12px 0 24px}
+
+/* Prices */
+.prices{display:grid;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.row{display:flex;justify-content:space-between;gap:16px;padding:18px 20px;background:var(--panel);border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row b{font-weight:normal;font-size:1.1rem}
+.row em{display:block;color:var(--muted);font:14px system-ui,sans-serif;font-style:normal}
+.row .price{color:var(--gold);font-size:1.15rem;white-space:nowrap}
+
+/* About */
+.about{display:grid;gap:32px}
+@media(min-width:760px){.about{grid-template-columns:1.2fr 1fr;align-items:center}}
+.about p{color:var(--muted);margin-bottom:14px}
+.about-photo{border-radius:6px;border:1px solid var(--line);margin-bottom:20px;aspect-ratio:16/10;object-fit:cover;width:100%}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px 8px}
+.stat strong{display:block;color:var(--gold);font-size:1.6rem}
+.stat span{font:12px system-ui,sans-serif;color:var(--muted)}
+
+/* Gallery: images sit on a placeholder tile so the layout holds if a photo is missing */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:760px){.gallery{grid-template-columns:repeat(4,1fr)}}
+.shot{
+  aspect-ratio:1;border-radius:6px;border:1px solid var(--line);overflow:hidden;
+  background:linear-gradient(135deg,#222,#161616);
+}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.shot:hover img{transform:scale(1.05)}
+
+/* Contact */
+.contact{display:grid;gap:24px}
+@media(min-width:760px){.contact{grid-template-columns:1fr 1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:28px}
+.card h3{margin-bottom:12px;font-size:1.2rem}
+.hours{width:100%;border-collapse:collapse;font:15px system-ui,sans-serif}
+.hours td{padding:7px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;color:var(--muted)}
+.address{margin-top:16px;color:var(--muted);font:15px system-ui,sans-serif}
+.call{text-align:center}
+.call .num{display:block;font-size:1.8rem;color:var(--gold);margin:10px 0 18px}
+.call p{color:var(--muted);font:15px system-ui,sans-serif;margin-top:16px}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font:13px system-ui,sans-serif}
+
+/* Mobile spacing (kept at the end so it overrides the rules above) */
+@media(max-width:759px){
+  .hero{padding:80px 0 70px}
+  section{padding:48px 0}
+  .btn{padding:14px 22px}
+  .row{padding:16px}
+  .card{padding:22px}
+}
